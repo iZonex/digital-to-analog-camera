@@ -1,0 +1,15 @@
+[Unit]
+Description=FPV Zoom Control Service
+Wants=network-online.target
+After=network-online.target pigpiod.service
+Requires=pigpiod.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/zym/
+ExecStart=/usr/bin/python3 fpv_zoom.py
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
